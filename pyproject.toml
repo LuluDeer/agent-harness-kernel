@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-harness-kernel"
+version = "0.1.0"
+description = "Agent runtime primitives for LLM upstreams without function calling or server-side context"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["agent", "llm", "tool-calling", "function-calling", "session", "harness"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+]
+
+# The parsing half is stdlib-only by design.
+dependencies = []
+
+[project.optional-dependencies]
+chain = ["pymysql>=1.1", "redis>=5.0"]
+dev = ["pytest>=8.0", "pymysql>=1.1", "redis>=5.0"]
+
+[tool.setuptools.packages.find]
+include = ["harness_kernel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
